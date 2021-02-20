@@ -11,6 +11,14 @@
 
 <body>
     <div id="title">Progress</div>
+    <div id="inputArea">
+        <input type="text" id="num">
+        <button id="calc" onclick="calc()">submit</button>
+    </div>
+    <div id="adjustArea">
+        <button id="minus" class="adjust" onclick="minus()">-</button>
+        <button id="plus" class="adjust" onclick="plus()">+</button>
+    </div>
     <div id="outer">
         <div id="inner"></div>
     </div>
@@ -34,11 +42,13 @@
         height: 40px;
         transform: translateX(-50%);
         left: 50%;
+        margin-top: 30px;
         border: 3px solid white;
         box-shadow: 0 0 10px white;
     }
+
     #inner {
-        transition: 1s;
+        transition: 0.3s;
         /* central align */
         position: relative;
         width: 0px;
@@ -46,21 +56,112 @@
         top: 50%;
         transform: translateY(-50%);
         /* color */
-        background: yellow;
+        background: aqua;
         margin-left: 5px;
-        box-shadow: 0 0 10px white;
+        box-shadow: 0 0 10px aqua;
+    }
+    /* big area */
+    #inputArea, #adjustArea {
+        margin: 10px 10px;
+        text-align: center;
+    }
+
+    input {
+        background: black;
+        height: 30px;
+        color: white;
+        border: 1px solid white;
+        font-size: 16px;
+        font-family: arial;
+    }
+    /* buttons */
+    .adjust{
+        width: 60px;
+        margin: 10px;
+    }
+    button {
+        transition: 0.2s;
+        background: black;
+        color: white;
+        border: 1px solid white;
+        border-radius: 2px;
+        font-size: 16px;
+        padding: 5px 5px;
+        font-family: arial;
+    }
+
+    button:hover {
+        background: inherit;
+        color: aqua;
+        border: 1px solid aqua;
+        border-radius: 2px;
+        font-size: 16px;
+        padding: 5px 5px;
+        font-family: arial;
+    }
+
+    button:active {
+        background: aqua;
+        color: black;
+        border: 1px solid inherit;
+        border-radius: 2px;
+        font-size: 16px;
+        padding: 5px 5px;
+        font-family: arial;
     }
 </style>
 <script>
-    $("#outer").mouseenter(function(){
+    function plus(){
+        var value = document.getElementById("num").value;
+        var percentage = parseInt(value) + 10;
+        setPercentage(percentage);
+    }
+    function minus(){
+        var value = document.getElementById("num").value;
+        var percentage = parseInt(value) - 10;
+        setPercentage(percentage);
+    }
+    // set the percentage, most basic. "per" is a int
+    function setPercentage(per){
+        // select bar
+        var width = document.getElementById("outer").clientWidth - 9;
+        // refill the value
+        document.getElementById("num").value = per.toString();
+        // if overflow
+        if (per > 100) {
+            document.getElementById("num").value = "100";
+            per = 100;
+        }
+        if (per < 0){
+            document.getElementById("num").value = "0";
+            per = 0;
+        }
+        // calc width
+        var targetWidth = parseInt(width * per / 100);
         $("#inner").css({
-            "width": "485px"
+            "width": `${targetWidth}px`
         })
-    });
-    $("#outer").mouseleave(function(){
-        $("#inner").css({
-            "width": "0px"
-        })
-    });
+    }
+    // callback of submit button
+    function calc() {
+        var value = document.getElementById("num").value;
+        var percentage = parseInt(value);
+        setPercentage(percentage);
+    }
+    // detect mouse movement
+    function autoGoUp() {
+        $("#outer").mouseenter(function () {
+            $("#inner").css({
+                "width": "485px"
+            })
+        });
+        $("#outer").mouseleave(function () {
+            $("#inner").css({
+                "width": "0px"
+            })
+        });
+    }
+
 </script>
+
 </html>
