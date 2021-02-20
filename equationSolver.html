@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>二元一次方程求解</h1>
+    <!-- a -->
+    <div class='line'>
+        <span>a:</span>
+        <input type="text" id="a">
+        <br />
+    </div>
+    <!-- b -->
+    <div class='line'>
+        <span>b:</span>
+        <input type="text" id="b">
+        <br />
+    </div>
+    <!-- c -->
+    <div class='line'>
+        <span>c:</span>
+        <input type="text" id="c">
+        <br />
+    </div>
+    <!-- calc -->
+    <div class='line'>
+        <button id="calc" class="label" onclick="solve()">计算</button>
+        <button id="clear" class="label" onclick="clearAll()">清空</button>
+        <!-- 指定有没有根 -->
+        <div id="status" class='output'>判别式</div>
+        <!-- 解 -->
+        <div id="result" class='output'>结果</div>
+    </div>
+
+</body>
+
+<script>
+    function clearAll() {
+        document.getElementById("a").value = "";
+        document.getElementById("b").value = "";
+        document.getElementById("c").value = "";
+        document.getElementById("status").innerHTML = "判别式";
+        document.getElementById("result").innerHTML = "结果";
+    }
+    function setResult(result) {
+        document.getElementById("result").innerHTML = result;
+        console.log('result set to: ' + result);
+    }
+    function setStatus(status) {
+        document.getElementById("status").innerHTML = status;
+        console.log('status set to: ' + status)
+    }
+
+    function solve() {
+        var a = document.getElementById("a").value;
+        var b = document.getElementById("b").value;
+        var c = document.getElementById("c").value;
+        var delta = Math.pow(b, 2) - 4 * a * c;
+        if (delta < 0) {
+            setStatus("方程无解，Δ = " + delta);
+            setResult("")
+        }
+        else if (delta == 0) {
+            var ans = - b / (2 * a);
+            setStatus("方程有一根，Δ = " + delta);
+            setResult(ans.toString());
+        }
+        else {
+            var x1 = (- b + Math.sqrt(delta)) / (2 * a);
+            var x2 = (- b - Math.sqrt(delta)) / (2 * a);
+            setStatus("方程有两根，Δ = " + delta);
+            setResult(`${x1} 和 ${x2}`);
+        }
+    }
+</script>
+
+<style>
+    /* over all */
+    body {
+        background: #f3e5f5;
+    }
+
+    h1 {
+        transition: 0.3s;
+        text-align: center;
+        font-size: 24px;
+        color: #ba68c8;
+    }
+    h1:hover {
+        text-align: center;
+        font-size: 24px;
+        color: #ba68c8;
+        text-shadow: 1px 1px 3px #b8b8b8;
+    }
+
+    /* three labels */
+    span {
+        transition: 0.3s;
+        width: 50px;
+        text-align: left;
+        font-family: 'microsoft yahei ui';
+        padding: 10px 10px 10px 10px;
+    }
+
+    span:hover {
+        width: 50px;
+        color: #7b1fa2;
+        text-align: left;
+        font-family: 'microsoft yahei ui';
+        padding: 10px 10px 10px 10px;
+        text-shadow: 1px 1px 2px #ba68c8;
+    }
+
+    /* centering */
+    .line {
+        padding: 10px;
+        text-align: center;
+    }
+
+    /* input box */
+    input {
+        transition: 0.3s;
+        width: 100px;
+        height: 30px;
+        color: #7b1fa2;
+        border: 1px solid #7b1fa2;
+        background: white;
+        box-shadow: 2px 2px 2px #d5a3df;
+    }
+
+    input:hover {
+        width: 100px;
+        height: 30px;
+        color: #7b1fa2;
+        border: 1px solid #7b1fa2;
+        background: white;
+        box-shadow: 2px 2px 8px 2px #bd7ec9;
+    }
+
+    /* button */
+    button {
+        transition: 0.1s;
+        width: 90px;
+        height: 40px;
+        color: #7b1fa2;
+        border: 2px solid #7b1fa2;
+        background: #e1bee7;
+        /* border-radius: 4px; */
+    }
+
+    button:hover {
+        width: 90px;
+        height: 40px;
+        color: #7b1fa2;
+        border: 2px solid #7b1fa2;
+        background: #ce93d8;
+        border-radius: 8px;
+    }
+
+    button:active {
+        width: 80;
+        height: 40px;
+        color: #f5dfff;
+        border: 2px solid #633475;
+        background: #82368f;
+        border-radius: 8px;
+    }
+
+    /* result */
+    #status {
+        transition: 0.3s;
+        font-size: 20px;
+        font-family: 'microsoft yahei';
+        padding: 15px;
+    }
+
+    #status:hover {
+        font-size: 20px;
+        font-family: 'microsoft yahei';
+        padding: 15px;
+        color: #9246a0;
+    }
+
+    #result {
+        transition: 0.3s;
+        font-size: 15px;
+        font-family: 'microsoft yahei';
+    }
+
+    #result:hover {
+        font-size: 20px;
+        font-family: 'microsoft yahei';
+        color: #9246a0;
+    }
+</style>
+
+</html>

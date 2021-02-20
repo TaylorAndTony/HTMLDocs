@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div id="hide"></div>
+    <div id='clock'></div>
+
+    <script>
+        function getDate() {
+            date = new Date();
+            hour = date.getHours();
+            minute = date.getMinutes();
+            second = date.getSeconds();
+            if (second < 10) {
+                second = '0' + second;
+            }
+            if (minute < 10) {
+                minute = '0' + minute;
+            }
+            if (hour < 10) {
+                hour = '0' + hour;
+            }
+            return `${hour}:${minute}:${second}`
+        }
+
+        function what() {
+            document.getElementById("clock").innerHTML = getDate();
+        }
+
+        setInterval(what, 1000);
+        what();
+    </script>
+
+
+</body>
+<style>
+    body{
+        background:#4d267e;
+    }
+    #clock {
+        /* centering */
+        position: absolute;
+        height: 160px;
+        width: 500px;
+        margin-top: -80px;
+        margin-left: -250px;
+        top: 50%;
+        left: 50%;
+        /* clock looking */
+        font-weight: 1;
+        font-size: 120px;
+        letter-spacing: 15px;
+        /* left centering to avoid shaking */
+        text-align: left;
+        color: #f3e5f5;
+        text-shadow: 2px 2px 20px #bc47ac;
+        /* animation */
+        transition: 0.5s;
+    }
+
+</style>
+
+</html>

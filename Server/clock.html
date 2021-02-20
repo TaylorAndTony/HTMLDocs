@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <div id='clock'></div>
+
+    <script>
+        function getDate() {
+            date = new Date();
+            hour = date.getHours();
+            minute = date.getMinutes();
+            second = date.getSeconds();
+            if (second < 10){
+                second = '0' + second;
+            }
+            return `${hour}:${minute}:${second}`
+        }
+
+        function what() {
+            document.getElementById("clock").innerHTML = getDate();
+        }
+
+        setInterval(what, 1000);
+        what();
+    </script>
+
+    <style>
+        #clock {
+            border: 3px solid #f48fb1;
+            background: #fce4ec;
+            border-radius: 20px;
+            font-size: 60px;
+            text-align: center;
+            color: #f06292;
+            padding: 10px 10px;
+            margin: 30px 30px;
+            box-shadow: 5px 5px 5px 5px rgba(128, 98, 119, 0.5);
+        }
+    </style>
+
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="title">Progress</div>
+    <div id="outer">
+        <div id="inner"></div>
+    </div>
+</body>
+<style>
+    body {
+        background: black;
+    }
+
+    #title {
+        font-size: 40px;
+        font-family: arial;
+        color: white;
+        text-align: center;
+        margin: 10px 10px;
+    }
+
+    #outer {
+        position: absolute;
+        width: 500px;
+        height: 40px;
+        transform: translateX(-50%);
+        left: 50%;
+        border: 3px solid white;
+        box-shadow: 0 0 10px white;
+    }
+    #inner {
+        transition: 1s;
+        /* central align */
+        position: relative;
+        width: 0px;
+        height: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        /* color */
+        background: yellow;
+        margin-left: 5px;
+        box-shadow: 0 0 10px white;
+    }
+</style>
+<script>
+    $("#outer").mouseenter(function(){
+        $("#inner").css({
+            "width": "485px"
+        })
+    });
+    $("#outer").mouseleave(function(){
+        $("#inner").css({
+            "width": "0px"
+        })
+    });
+</script>
+</html>
