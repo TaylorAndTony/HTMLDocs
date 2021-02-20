@@ -22,12 +22,19 @@ function showClock(){
 function showInput(){
     document.getElementById("search").style.opacity = 1;
 }
+//when you click the search button
+function search(){
+    var text = document.getElementById("input").value;
+    // https://www.baidu.com/s?ie=utf-8&wd=js%E8%B7%B3%E8%BD%AC
+    var url = `https://www.baidu.com/s?ie=utf-8&wd=${text}`;
+    window.location.href = url;
+}
 // main
 window.onload = function(){
+    
     setClock();
-    setInterval(setClock, 1000);
+    setInterval(setClock, 3000);
     // setClock();
-    // 0.1s 后展示时钟，动画1s
     setTimeout(showClock, 100);
     setTimeout(showInput, 500);
 }
