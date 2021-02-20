@@ -13,24 +13,86 @@ html{
     margin-top: 60px;
 }
 #search{
-    transition: 0.5s;
+    opacity: 0;
+    transition: 1s;
     /* center */
     position: absolute;
+    height: 100px;
     width: 500px;
     transform: translateX(-50%);
     left: 50%;
 }
 #input{
-    width: 440px;
-    height: 30;
+    position: relative;
+    width: 420px;
+    height: 40px;
+    top: 50%;
+    transform: translateY(-50%);
     font-family: "microsoft yahei";
     font-size: 18px;
     float: left;
+    /* looking */
+    border: 0;
+    border-radius: 20px;
+    color: white;
+    background: black;
+    opacity: 0.8;
+    outline: none;
+    /* place cursor in the box */
+    padding-left: 30px;
 }
 #go{
+    transition: 0.3s;
+    /* position */
+    position: relative;
     width: 40px;
-    height: 30;
+    height: 40px;
+    top: 50%;
+    transform: translateY(-50%);
     float: right;
+    /* looking */
+    text-align: center;
+    border: 0;
+    border-radius: 20px;
+    color: white;
+    background: black;
+    opacity: 0.7;
+}
+#go:hover{
+    transition: 0.3s;
+    /* position */
+    position: relative;
+    width: 40px;
+    height: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    float: right;
+    /* looking */
+    text-align: center;
+    border: 0;
+    border-radius: 20px;
+    color: white;
+    background: #42a5f5;
+    opacity: 0.7;
+    outline: none;
+}
+#go:active{
+    transition: 0.3s;
+    /* position */
+    position: relative;
+    width: 40px;
+    height: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    float: right;
+    /* looking */
+    text-align: center;
+    border: 0;
+    border-radius: 20px;
+    color: white;
+    background: #1565c0;
+    opacity: 0.7;
+    outline: none;
 }
 /* 竖屏 */
 @media screen and (max-aspect-ratio: 11/7){

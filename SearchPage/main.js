@@ -19,6 +19,9 @@ function setClock(){
 function showClock(){
     document.getElementById("clock").style.opacity = 1;
 }
+function showInput(){
+    document.getElementById("search").style.opacity = 1;
+}
 // main
 window.onload = function(){
     setClock();
@@ -26,4 +29,5 @@ window.onload = function(){
     // setClock();
     // 0.1s 后展示时钟，动画1s
     setTimeout(showClock, 100);
+    setTimeout(showInput, 500);
 }
