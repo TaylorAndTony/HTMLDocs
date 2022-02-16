@@ -31,6 +31,13 @@
 
         <a class="title">像素</a>
         <p>
+            <a>使用预设</a>
+            <input class="btn" id="pre-small" type="button" value="小" />
+            <input class="btn" id="pre-medium" type="button" value="中" />
+            <input class="btn" id="pre-large" type="button" value="大" />
+        </p>
+        <p>
+            <a>操作</a>
             <input class="btn" id="repl" type="button" value="换行替换空格" />
             <input class="btn" id="submit" type="button" value="生成" />
         </p>
@@ -100,6 +107,25 @@
             } else {
                 $("#input-container").css("display", "none");
             }
+        });
+        // pre-defined
+        $("#pre-small").click(function () {
+            $("#fontsize").val("11");
+            $("#fontwidth").val("55");
+            $("#blankwidth").val("55");
+            $("#submit").click();
+        });
+        $("#pre-medium").click(function () {
+            $("#fontsize").val("16");
+            $("#fontwidth").val("120");
+            $("#blankwidth").val("120");
+            $("#submit").click();
+        });
+        $("#pre-large").click(function () {
+            $("#fontsize").val("22");
+            $("#fontwidth").val("240");
+            $("#blankwidth").val("240");
+            $("#submit").click();
         });
     })
 </script>
