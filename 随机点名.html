@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="box">随机点名</div>
+    <span id="span">开始</span>
+    <div id='hidden'>源码来源于网络</div>
+</body>
+<style>
+    #box {
+        width: 30%;
+        height: 200px;
+        background-color: rgb(233, 248, 214);
+        border: 1px solid rgb(130, 216, 18);
+        font-size: 40px;
+        font-weight: 600;
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 200px;
+        text-align: center;
+        margin: 25px auto;
+        border-radius: 10px;
+    }
+
+    #hidden{
+        color: #bdbdbd;
+        font-size: 12px;
+        text-align: center;
+        padding: 10px;
+    }
+
+    span {
+        display: block;
+        width: 30%;
+        height: 44px;
+        line-height: 44px;
+        background-color: rgb(6, 158, 64);
+        border-radius: 10px;
+        color: #fff;
+        text-align: center;
+        margin: 0 auto;
+        font-size: 18px;
+        font-family: 华文细黑;
+    }
+
+    span:hover {
+        background-color: rgb(4, 190, 76);
+    }
+</style>
+<script>
+    var arr = [
+        '吴梦露', '陆飞鹏', '李浩龙', '杨洋', '马思雨', '杨蕾儿', '刘广艺',
+        '杜易简', '刘凯', '赵芮', '袁修艺', '李志灿', '满建富', '陈开远',
+        '王佳康', '张潇洋', '王浩', '甄文喆', '孙松松', '刘璐易', '安嘉琪',
+        '宋来宇', '吕坤山', '王骏一', '肖荣凤', '朱欣乐', '任满华', '孙璐',
+        '万子杨', '张玉琳', '荣源源', '陈姝瑾', '任莹莹', '张琼',
+        '刘雁谦', '杨婕', '刘泽慧', '周蕾蕾', '王玲燕', '孙子涵', '王璇',
+        '王琪', '王兆琦', '牛月', '赵博睿', '林炎华', '翟尚言',
+        '谢佳', '罗爽', '蒋泽潭', '冯祥'
+    ];
+    var box = document.getElementById("box");
+    var span = document.getElementById("span");//获取元素
+    var state = 0;//定义状态，开始和结束
+    var t;
+    span.onclick = function () {
+        if (state == 0) {
+            //如果是0即开始随机，变为1时结束，不是0时执行else
+            clearInterval(t);
+            t = setInterval(function () {
+                // console.log(1);
+                var sj = Math.round(Math.random() * (arr.length - 1));
+                console.log(arr[sj]);
+                box.innerHTML = arr[sj];
+            }, 3)
+            span.innerHTML = "结束"//更改按钮的内容
+            state = 1;
+        } else {
+            state = 0;
+            clearInterval(t);
+            span.innerHTML = "开始"
+        }
+    }
+</script>
+
+</html>

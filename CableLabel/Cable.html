@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>文本标签快速生成</title>
+</head>
+
+<body>
+    <input class="btn" id="show-hide" type="button" value="显示/隐藏界面" />
+    <div class="input-container" id="input-container">
+        <p class="title">设置文本</p>
+        <textarea id="input-text" rows="5" cols="50" placeholder="空格分开多个文本"
+            onkeydown="if(event.keyCode == 13){submit.click();repl.click()}"></textarea>
+        <p></p>
+
+        <a class="title">字体大小</a>
+        <input class="digit-input-area" id="fontsize" type="text" value="16" placeholder="字体大小，必选项"
+            onkeydown="if(event.keyCode == 13){submit.click();repl.click()}" />
+
+        <a class="title">文本宽度</a>
+        <input class="digit-input-area" id="fontwidth" type="text" value="120" placeholder="文本宽度，必选项"
+            onkeydown="if(event.keyCode == 13){submit.click();repl.click()}" />
+        <a class="title">像素</a>
+
+        <a class="title">左侧留白宽度</a>
+        <input class="digit-input-area" id="blankwidth" type="text" value="120" placeholder="尾巴宽度，必选项"
+            onkeydown="if(event.keyCode == 13){submit.click();repl.click()}" />
+
+        <a class="title">像素</a>
+        <p>
+            <input class="btn" id="repl" type="button" value="换行替换空格" />
+            <input class="btn" id="submit" type="button" value="生成" />
+        </p>
+    </div>
+
+    <br />
+    <div class="big-container"></div>
+</body>
+<script src="jquery-3.6.0.js"></script>
+<script>
+    // Create a table with a name:
+    function createTable(name) {
+        text = `<div class="label">
+        <table border="1" cellspacing="0" cellpadding="10">
+            <tr>
+                <td class="blank-cell"></td>
+                <td class="text-cell">
+                    ${name}
+                </td>
+            </tr>
+            <tr>
+                <td class="tail-cell"></td>
+                <td class="text-cell">
+                    ${name}
+                </td>
+            </tr>
+        </table>
+    </div>`;
+        return text;
+    }
+    // create the whole table on the html page
+    function createTables(names) {
+        t = ""
+        $(".big-container").html(t);
+        for (let i = 0; i < names.length; i++) {
+            t += createTable(names[i]);
+        }
+        $(".big-container").html(t);
+    }
+    $(document).ready(function () {
+        // createTables(["测试", "2"]);
+        $("#submit").click(function () {
+            text = $("#input-text").val();
+            names = text.split(" ");
+            createTables(names);
+            // modify the style
+            $(".label").css("font-size", $("#fontsize").val() + "px");
+            $(".text-cell").css("width", $("#fontwidth").val() + "px");
+            $(".blank-cell").css("width", $("#blankwidth").val() + "px");
+        });
+        $("#repl").click(function () {
+            $("#input-text").val($("#input-text").val().replace(/\n/g, " "));
+        });
+        // show and hide
+        $("#show-hide").click(function () {
+            if ($("#input-container").css("display") == "none") {
+                $("#input-container").css("display", "block");
+            } else {
+                $("#input-container").css("display", "none");
+            }
+        });
+    })
+</script>
+<style>
+    .input-text {
+        font-family: 'Microsoft Yaheian', sans-serif;
+        font-size: 20px;
+        border: 0px;
+        background-color: green;
+    }
+
+    .digit-input-area {
+        font-family: 'Microsoft Yaheian', sans-serif;
+        font-size: 20px;
+        width: 5em;
+        height: 1.5em;
+    }
+
+    .title {
+        padding: 2px;
+        margin: 2px;
+    }
+
+    .input-container {
+        font-family: 'Microsoft Yaheian', sans-serif;
+        font-size: 20px;
+    }
+
+    .label {
+        font-family: 'Microsoft Yaheian', sans-serif;
+        font-size: 20px;
+        float: left;
+        text-align: center;
+        padding: 10px
+    }
+
+    .blank-cell {
+        background-color: #fff;
+        width: 150px;
+    }
+
+    .text-cell {
+        background-color: #fff;
+        width: 150px;
+        text-align: center;
+    }
+
+    .tail-cell {
+        background-color: #fff;
+    }
+
+    .btn {
+        font-family: 'Microsoft Yaheian', sans-serif;
+        font-size: 20px;
+    }
+</style>
+
+</html>
