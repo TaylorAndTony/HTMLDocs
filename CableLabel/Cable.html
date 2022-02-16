@@ -12,7 +12,7 @@
     <input class="btn" id="show-hide" type="button" value="显示/隐藏界面" />
     <div class="input-container" id="input-container">
         <p class="title">设置文本</p>
-        <textarea id="input-text" rows="5" cols="50" placeholder="空格分开多个文本"
+        <textarea id="input-text" rows="5" cols="50" placeholder="空格分开多个文本，可直接回车提交"
             onkeydown="if(event.keyCode == 13){submit.click();repl.click()}"></textarea>
         <p></p>
 
@@ -43,6 +43,9 @@
 <script>
     // Create a table with a name:
     function createTable(name) {
+        if (name == "") {
+            return "";
+        }
         text = `<div class="label">
         <table border="1" cellspacing="0" cellpadding="10">
             <tr>
@@ -66,13 +69,19 @@
         t = ""
         $(".big-container").html(t);
         for (let i = 0; i < names.length; i++) {
+            if (names[i] == "") {
+                continue;
+            }
             t += createTable(names[i]);
         }
         $(".big-container").html(t);
     }
+
     $(document).ready(function () {
         // createTables(["测试", "2"]);
         $("#submit").click(function () {
+            // 提交前先格式化一次文本
+            $("#repl").click();
             text = $("#input-text").val();
             names = text.split(" ");
             createTables(names);
