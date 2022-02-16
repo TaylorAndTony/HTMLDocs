@@ -31,15 +31,18 @@
 
         <a class="title">像素</a>
         <p>
-            <a>使用预设</a>
+            <a class="title">使用预设</a>
             <input class="btn" id="pre-small" type="button" value="小" />
             <input class="btn" id="pre-medium" type="button" value="中" />
             <input class="btn" id="pre-large" type="button" value="大" />
         </p>
         <p>
-            <a>操作</a>
+            <a class="title">操作</a>
             <input class="btn" id="repl" type="button" value="换行替换空格" />
             <input class="btn" id="submit" type="button" value="生成" />
+            <a style="padding: 20px"></a>
+            <input class="btn" id="reverse" type="checkbox" checked />
+            <a>另一侧颠倒文字</a>
         </p>
     </div>
 
@@ -57,7 +60,7 @@
         <table border="1" cellspacing="0" cellpadding="10">
             <tr>
                 <td class="blank-cell"></td>
-                <td class="text-cell">
+                <td class="text-cell-upper">
                     ${name}
                 </td>
             </tr>
@@ -96,6 +99,10 @@
             $(".label").css("font-size", $("#fontsize").val() + "px");
             $(".text-cell").css("width", $("#fontwidth").val() + "px");
             $(".blank-cell").css("width", $("#blankwidth").val() + "px");
+            // reverse the text
+            if ($("#reverse").prop("checked")) {
+                $(".text-cell-upper").css("transform", "rotate(180deg)");
+            }
         });
         $("#repl").click(function () {
             $("#input-text").val($("#input-text").val().replace(/\n/g, " "));
@@ -134,7 +141,6 @@
         font-family: 'Microsoft Yaheian', sans-serif;
         font-size: 20px;
         border: 0px;
-        background-color: green;
     }
 
     .digit-input-area {
@@ -142,16 +148,28 @@
         font-size: 20px;
         width: 5em;
         height: 1.5em;
+        color: #D259FD;
     }
 
     .title {
         padding: 2px;
         margin: 2px;
+        color: #6A6DFA;
+    }
+
+    .btn {
+        font-family: 'Microsoft Yaheian', sans-serif;
+        font-size: 20px;
+        color: #6093E6;
     }
 
     .input-container {
         font-family: 'Microsoft Yaheian', sans-serif;
         font-size: 20px;
+    }
+
+    #reverse{
+        margin-left: 20px;
     }
 
     .label {
@@ -173,13 +191,14 @@
         text-align: center;
     }
 
-    .tail-cell {
+    .text-cell-upper {
         background-color: #fff;
+        width: 150px;
+        text-align: center;
     }
 
-    .btn {
-        font-family: 'Microsoft Yaheian', sans-serif;
-        font-size: 20px;
+    .tail-cell {
+        background-color: #fff;
     }
 </style>
 
