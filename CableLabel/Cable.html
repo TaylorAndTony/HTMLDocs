@@ -42,7 +42,9 @@
             <input class="btn" id="submit" type="button" value="生成" />
             <a style="padding: 20px"></a>
             <input class="btn" id="reverse" type="checkbox" checked />
-            <a>另一侧颠倒文字</a>
+            <a class="check-label" onclick="reverse.click();submit.click();repl.click()">另一侧颠倒文字</a>
+            <input class="btn" id="single" type="checkbox" />
+            <a class="check-label" onclick="single.click();submit.click();repl.click()">单行标签</a>
         </p>
     </div>
 
@@ -52,37 +54,53 @@
 <script src="jquery-3.6.0.js"></script>
 <script>
     // Create a table with a name:
-    function createTable(name) {
+    function createTable(name, singleColumn) {
         if (name == "") {
             return "";
         }
-        text = `<div class="label">
-        <table border="1" cellspacing="0" cellpadding="10">
-            <tr>
+        if (!singleColumn) {
+            text = `<div class=\"label\">
+            <table border="1" cellspacing="0" cellpadding="10">
+                <tr>
                 <td class="blank-cell"></td>
                 <td class="text-cell-upper">
                     ${name}
                 </td>
             </tr>
             <tr>
-                <td class="tail-cell"></td>
-                <td class="text-cell">
-                    ${name}
-                </td>
-            </tr>
-        </table>
-    </div>`;
+                    <td class="blank-cell"></td>
+                    <td class="text-cell">
+                        ${name}
+                    </td>
+                </tr>
+            </table>
+        </div>`
+        }
+        else {
+            text = `<div class=\"label\">
+            <table border="1" cellspacing="0" cellpadding="10">
+                <tr>
+                    <td class="text-cell-upper">
+                        ${name}
+                    </td>
+                    <td class="text-cell">
+                        ${name}
+                    </td>
+                </tr>
+            </table>
+        </div>`
+        }
         return text;
     }
     // create the whole table on the html page
-    function createTables(names) {
+    function createTables(names, singleColumn) {
         t = ""
         $(".big-container").html(t);
         for (let i = 0; i < names.length; i++) {
             if (names[i] == "") {
                 continue;
             }
-            t += createTable(names[i]);
+            t += createTable(names[i], singleColumn);
         }
         $(".big-container").html(t);
     }
@@ -94,10 +112,11 @@
             $("#repl").click();
             text = $("#input-text").val();
             names = text.split(" ");
-            createTables(names);
+            createTables(names, $("#single").prop("checked"));
             // modify the style
             $(".label").css("font-size", $("#fontsize").val() + "px");
             $(".text-cell").css("width", $("#fontwidth").val() + "px");
+            $(".text-cell-upper").css("width", $("#fontwidth").val() + "px");
             $(".blank-cell").css("width", $("#blankwidth").val() + "px");
             // reverse the text
             if ($("#reverse").prop("checked")) {
@@ -168,7 +187,7 @@
         font-size: 20px;
     }
 
-    #reverse{
+    #reverse {
         margin-left: 20px;
     }
 
@@ -199,6 +218,10 @@
 
     .tail-cell {
         background-color: #fff;
+    }
+
+    .check-label {
+        cursor: pointer;
     }
 </style>
 
