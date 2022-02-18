@@ -45,5 +45,5 @@ if not cmt:
     cmt = give_me_date(detail=True)
 os.system('git commit -m "%s"' % cmt)
 green_print('Pushing files...')
-os.system('git push origin master')
+os.system('git push origin main')
 input('按回车键退出')
