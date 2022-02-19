@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.6.0.js"></script>
+</head>
+
+<body>
+    <div id="main">
+        <!-- Input and control area -->
+        <div id="control-area">
+            <a class="text-show">每组包含</a>
+            <input type="text" class="digit-in" id="num" value="3">
+            <a class="text-show">个</a>
+
+            <a class="text-show">使用</a>
+            <input type="text" class="digit-in" id="sep" value="/">
+            <a class="text-show">分割</a>
+
+            <p class="empty-line"></p>
+
+            <a class="text-show">水平方向生成</a>
+            <input type="text" class="digit-in" id="hori" value="1">
+            <a class="text-show">组</a>
+
+            <a class="text-show">垂直方向生成</a>
+            <input type="text" class="digit-in" id="vert" value="1">
+            <a class="text-show">组</a>
+
+            <p class="empty-line"></p>
+
+            <input type="button" class="btn" id="btn-gen" value="生成">
+            <input type="button" class="btn" id="btn-copy" value="复制">
+        </div>
+        <div id="out-area">
+            <textarea id="result" rows="10" cols="50"></textarea>
+        </div>
+    </div>
+</body>
+<script>
+    // generate random temperature between 35.5 and 36.6
+    function genSingle() {
+        var temp = Math.random() * (36.6 - 35.5) + 35.5;
+        return temp.toFixed(1);
+    }
+    // generate a group
+    function genGroup(count, sep) {
+        var result = [];
+        for (var i = 0; i < count; i++) {
+            result.push(genSingle());
+        }
+        return result.join(sep);
+    }
+    function genFinal(countPerGroup, sepChar, horiCount, vertCount) {
+        var result = "";
+        for (var i = 0; i < vertCount; i++) {
+            for (var j = 0; j < horiCount; j++) {
+                result += genGroup(countPerGroup, sepChar) + "\t";
+            }
+            result += "\n";
+        }
+        return result;
+    }
+    // bind the button to this:
+    function autoGen() {
+        var countPerGroup = $("#num").val();
+        var sepChar = $("#sep").val();
+        var horiCount = $("#hori").val();
+        var vertCount = $("#vert").val();
+        var result = genFinal(countPerGroup, sepChar, horiCount, vertCount);
+        $("#result").val(result);
+    }
+    // bind others
+    $("#btn-gen").click(autoGen);
+    $(".digit-in").keyup(autoGen);
+    // copy
+    $("#btn-copy").click(function() {
+        $("#result").select();
+        document.execCommand("copy");
+    });
+
+</script>
+<style>
+    body {
+        background-color: #f5f5f5;
+    }
+    #main {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #control-area {
+        background-color: #fff;
+        margin-top: 10px;
+        padding: 20px;
+        border: 2px solid #9fa8da;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    .text-show {
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    .digit-in {
+        font-size: 20px;
+        padding: 10px;
+        width: 3em;
+        height: 20px;
+        text-align: center;
+        border: 2px solid #9fa8da;
+        background-color: #e8eaf6;
+        border-radius: 20px;
+    }
+
+    .empty-line {
+        width: 100%;
+        height: 1px;
+    }
+
+    .btn {
+        font-size: 20px;
+        padding: 10px;
+        background-color: #e8eaf6;
+        border: 2px solid;
+        border-color: #9fa8da;
+        border-radius: 20px;
+        transition: 0.1s;
+    }
+
+    .btn:hover {
+        background-color: #c5cae9;
+        border-color: #7986cb;
+    }
+
+    .btn:active {
+        background-color: #b39ddb;
+        border-color: #9575cd;
+    }
+
+    #out-area {
+        text-align: center;
+        padding: 20px;
+    }
+    #result {
+        font-family: "Arial", Helvetica, sans-serif;
+        border: 2px solid #9fa8da;
+        border-radius: 5px;
+        padding: 10px;
+        font-size: 20px;
+    }
+</style>
+
+</html>
