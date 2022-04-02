@@ -71,6 +71,11 @@
     function autoGen() {
         var countPerGroup = $("#num").val();
         var sepChar = $("#sep").val();
+        if (sepChar === '\\t') {
+            sepChar = '\t';
+        } else if (sepChar === '\\n') {
+            sepChar = '\n';
+        }
         var horiCount = $("#hori").val();
         var vertCount = $("#vert").val();
         var result = genFinal(countPerGroup, sepChar, horiCount, vertCount);
