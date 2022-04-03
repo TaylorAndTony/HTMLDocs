@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOPS!</title>
+</head>
+
+<body>
+    <div class="center">
+        <div id="emoji">:(</div>
+        <div id="touble">
+            你的电脑遇到问题,需要重新启动。<br />我们只收集某些错误信息，然后你可以重新启动。
+            <div id="prog">1% 完成</div>
+        </div>
+        <div id="bottom">
+            <table id="table" cellspacing="10" border="0">
+                <tr>
+                    <td width="220px">
+                        <img id="qrcode" src="qr1.png"></img>
+                    </td>
+                    <td>
+                        <a id="err-text">有关此问题的详细信息和可能的解决方法，
+                            请访问 http://windows.com/stopcode<br />
+                            如果致电支持人员，请提供一下信息：<br /><br /><br /><br />
+                            终止代码：DO_NOT_LOOK_AT_ME
+                        </a>
+                    </td>
+                </tr>
+            </table>
+
+
+        </div>
+    </div>
+    </div>
+
+</body>
+
+<style>
+    body {
+        background: #0079d8
+    }
+
+    .center {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+    }
+
+    #emoji {
+        font-size: 150px;
+        color: white;
+        transition: 0.5s;
+    }
+
+    #emoji:hover {
+        font-size: 200px;
+    }
+
+    #touble {
+        text-align: left;
+        margin-top: 10px;
+        margin-bottom: 1em;
+        color: white;
+        font-size: 30px;
+    }
+
+    #prog {
+        font-size: 30px;
+        color: white;
+        margin-top: 2em;
+    }
+
+    #table {
+        width: 100%;
+        height: 100%;
+        border: 0px;
+    }
+
+    #qrcode {
+        width: 200px;
+        height: 200px;
+        border: 0px;
+        margin-right: 10px;
+    }
+
+    #err-text {
+        width: 100%;
+        color: white;
+        font-size: 16px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+</style>
+
+<script>
+    let running = false;
+    let progress = document.querySelector("#prog");
+    let timer = setInterval(function () {
+        if (running) {
+            progress.innerHTML = Math.round(Math.random() * 100 + 5, 0) + "% 完成";
+        }
+    }, 100)
+
+    progress.addEventListener("mouseenter", function () {
+        running = true;
+    });
+    progress.addEventListener("mouseleave", function () {
+        running = false;
+        progress.innerHTML = "1% 完成";
+    });
+</script>
+
+</html>
