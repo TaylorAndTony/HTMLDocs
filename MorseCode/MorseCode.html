@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Morse code generator</title>
+</head>
+
+<body>
+    <div id="main">
+        <div class="title-text">Input Morse Code or characters</div>
+        <textarea id="input" class="big-input"></textarea>
+        <div class="title-text">Auto translate</div>
+        <textarea id="output" class="big-input"></textarea>
+    </div>
+
+    <style>
+        body {
+            background-color: #eae5e3;
+        }
+
+        #main {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .big-input {
+            background-color: #f5f3f2;
+            font-family: Arial, Helvetica, sans-serif;
+            width: 90%;
+            height: 8em;
+            font-size: 28px;
+            margin: 10px;
+        }
+
+        .title-text {
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px;
+            font-size: 36px;
+            margin-top: 1em;
+            margin-bottom: 1em;
+            border-bottom: 2px solid #eae5e3;
+            width: 50%;
+            transition: .5s;
+        }
+
+        .title-text:hover {
+            border-bottom: 2px solid black;
+        }
+
+        .small-text {
+            font-size: 16px;
+        }
+
+        .short-input {
+            background-color: #f5f3f2;
+            border: 1px solid black;
+            border-radius: 10px;
+            width: 2em;
+            height: 1.2em;
+            font-size: 20px;
+            font-weight: bold;
+            margin-left: 10px;
+            margin-right: 10px;
+            padding: 5px;
+        }
+    </style>
+
+    <script>
+        let mapping = {
+            'A': '.-',
+            'B': '-...',
+            'C': '-.-.',
+            'D': '-..',
+            'E': '.',
+            'F': '..-.',
+            'G': '--.',
+            'H': '....',
+            'I': '..',
+            'J': '.---',
+            'K': '-.-',
+            'L': '.-..',
+            'M': '--',
+            'N': '-.',
+            'O': '---',
+            'P': '.--.',
+            'Q': '--.-',
+            'R': '.-.',
+            'S': '...',
+            'T': '-',
+            'U': '..-',
+            'V': '...-',
+            'W': '.--',
+            'X': '-..-',
+            'Y': '-.--',
+            'Z': '--..',
+            '0': '-----',
+            '1': '.----',
+            '2': '..---',
+            '3': '...--',
+            '4': '....-',
+            '5': '.....',
+            '6': '-....',
+            '7': '--...',
+            '8': '---..',
+            '9': '----.',
+            ' ': ' '
+        }
+        let reverseMapping = {}
+        for (let key in mapping) {
+            reverseMapping[mapping[key]] = key
+        }
+        function a2m(char) {
+            char = char.toUpperCase();
+            if (mapping[char]) {
+                return mapping[char]
+            } else {
+                return char
+            }
+        }
+        function m2a(singleMorseCode) {
+            if (reverseMapping[singleMorseCode]) {
+                return reverseMapping[singleMorseCode]
+            } else {
+                return singleMorseCode
+            }
+        }
+        document.getElementById('input').addEventListener('input', function () {
+            let input = document.getElementById('input').value
+            let output = ''
+            if (input) {
+                if (input.slice(0, 1) == '.' || input.slice(0, 1) == '-') {
+                    // input is morse code
+                    output = input.split(' ').map(m2a).join('')
+                } else {
+                    // input is characters
+                    output = input.split('').map(a2m).join(' ')
+                }
+                document.getElementById('output').value = output
+            }
+        })
+    </script>
+
+</body>
+
+</html>
