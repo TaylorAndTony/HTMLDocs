@@ -14,6 +14,8 @@
         <textarea id="input" class="big-input"></textarea>
         <div class="title-text">Auto translate</div>
         <textarea id="output" class="big-input"></textarea>
+        <div class="title-text">Graphic drawing</div>
+        <div class="graphic" id="graphic"></div>
     </div>
 
     <style>
@@ -67,6 +69,36 @@
             margin-left: 10px;
             margin-right: 10px;
             padding: 5px;
+        }
+        .dot {
+            width: 20px;
+            height: 20px;
+            background-color: black;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+        .dash {
+            width: 40px;
+            height: 20px;
+            background-color: black;
+            margin-right: 10px;
+            margin-top: 10px;
+        }
+        .space {
+            width: 50px;
+            height: 20px;
+            margin-top: 10px;
+        }
+        #graphic {
+            display: flex;
+            background-color: white;
+            padding: 10px;
+            width: 90%;
+            height:3em;
+            border: 1px solid black;
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
         }
     </style>
 
@@ -135,10 +167,23 @@
             if (input) {
                 if (input.slice(0, 1) == '.' || input.slice(0, 1) == '-') {
                     // input is morse code
-                    output = input.split(' ').map(m2a).join('')
+                    output = input.split(' ').map(m2a).join('');
+                    // create dash and dot to the id graphic
                 } else {
                     // input is characters
                     output = input.split('').map(a2m).join(' ')
+                    let graphic = document.getElementById('graphic');
+                    let tempHtml = ``;
+                    for (let code of output) {
+                        if (code === '.') {
+                            tempHtml += "<div class='dot'></div>"
+                        } else if (code === '-') {
+                            tempHtml += "<div class='dash'></div>"
+                        } else if (code === ' ') {
+                            tempHtml += "<div class='space'></div>"
+                        }
+                    }
+                    graphic.innerHTML = tempHtml;
                 }
                 document.getElementById('output').value = output
             }
