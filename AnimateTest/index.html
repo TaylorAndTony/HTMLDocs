@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="main">
+        <div class="animate__animated animate__bounce box">Some text</div>
+    </div>
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        body {
+            background-color: #e0e0e0;
+        }
+
+        #main {
+            width: 100%;
+            height: 100vh;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            margin: 20px;
+            width: 200px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            border-radius: 10px;
+            background: #e0e0e0;
+            box-shadow: 18px 18px 36px #b1b1b1,
+                -18px -18px 36px #ffffff;
+            transition: all 0.3s;
+        }
+
+        .box:hover {
+            background: #c5c5c5;
+        }
+    </style>
+</body>
+
+</html>
