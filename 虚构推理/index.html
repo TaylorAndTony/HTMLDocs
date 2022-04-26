@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>In Spectre</title>
+</head>
+
+<body>
+    <div id="main">
+        <div class="img-box" id="title">
+            <img src="img/title.png" alt="" id="title-img">
+        </div>
+        <div class="img-box" id="portrait-box">
+            <!-- <img src="img/portrait.png" alt="" id="portrait-img"> -->
+        </div>
+        <div class="img-box" id="comment-box">
+            <img src="img/comment.png" alt="" id="comment-img">
+        </div>
+
+    </div>
+    <div id="blank"></div>
+
+    <script>
+        function $(selector) {
+            return document.querySelector(selector);
+        }
+
+        function $$(selector) {
+            return document.querySelectorAll(selector);
+        }
+
+        function toCss(value, neg = false) {
+            if (neg) {
+                return `-${value}px`;
+            } else {
+                return `${value}px`;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            let imgBox = $('#comment-img');
+            imgBox.addEventListener('click', (e) => {
+                let relX = e.offsetX / imgBox.clientWidth;
+                let relY = e.offsetY / imgBox.clientHeight;
+                console.log(relX, relY);
+                let row = 0;
+                let col = 0;
+                // check row
+                if (relY < 0.21) {
+                    row = 1;
+                } else if (relY < 0.47) {
+                    row = 2;
+                } else {
+                    row = 3;
+                }
+                // check col
+                if (relX < 0.5) {
+                    col = 1;
+                } else {
+                    col = 2;
+                }
+                console.log(`${row}-${col}`);
+                switch (`${row}-${col}`) {
+                    // finish the click logic here!
+                    case '1-1':
+                        break;
+                    case '1-2':
+                        break;
+                    case '2-1':
+                        alert('Not available');
+                        break;
+                    case '2-2':
+                        break;
+                    case '3-1':
+                        break;
+                    case '3-2':
+                        break;
+                    default:
+                        break;
+                }
+            });
+        })
+    </script>
+</body>
+
+</html>

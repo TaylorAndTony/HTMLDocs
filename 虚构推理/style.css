@@ -1,0 +1,65 @@
+html {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-image: url('img/bg.jpg');
+    background-repeat: repeat;
+}
+
+#main {
+    width: 100%;
+    max-width: 900px;
+    position: relative;
+    margin: 0 auto;
+}
+
+#title-img {
+    width: 70%;
+    position: relative;
+    margin-top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#portrait-img {
+    width: 70%;
+    position: relative;
+    margin-top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#comment-img {
+    width: 80%;
+    position: relative;
+    margin-top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* buttons */
+#comment-box {
+    /* border: 1px solid #00ff00; */
+}
+
+.button {
+    background-color: rgba(255, 0, 0, 0.4);
+    display: flex;
+    width: 150px;
+    height: 60px;
+    position: relative;
+    z-index: 10;
+    cursor: pointer;
+}
+
+#blank {
+    height: 300px;
+    width: 100px;
+    opacity: 0;
+}
