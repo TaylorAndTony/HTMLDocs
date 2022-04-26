@@ -43,6 +43,26 @@ body {
     transform: translateX(-50%);
 }
 
+/* interactive portrait */
+#portrait-box {
+    overflow: hidden;
+    height: 100px;
+    cursor: pointer;
+    /* height: 100%; */
+}
+
+#clickme {
+    color: white;
+    position: relative;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    padding-top: 30px;
+    margin-bottom: -50px;
+    z-index: 99;
+}
+
 /* buttons */
 
 .button {

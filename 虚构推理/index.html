@@ -15,7 +15,8 @@
             <img src="img/title.png" alt="" id="title-img">
         </div>
         <div class="img-box" id="portrait-box">
-            <!-- <img src="img/portrait.png" alt="" id="portrait-img"> -->
+            <div id="clickme">click to extend</div>
+            <img src="img/portrait.png" alt="" id="portrait-img">
         </div>
         <div class="img-box" id="comment-box">
             <img src="img/comment.png" alt="" id="comment-img">
@@ -41,7 +42,22 @@
             }
         }
 
+
         document.addEventListener('DOMContentLoaded', function () {
+            // click image
+            let clicked = false;
+            let img = $('#portrait-box');
+            img.addEventListener('click', function () {
+                if (clicked) {
+                    img.style.height = '100px';
+                    $('#clickme').innerText = 'Click me to extend';
+                } else {
+                    img.style.height = '100%';
+                    $('#clickme').innerText = '';
+                }
+                clicked = !clicked;
+            })
+            // handle click on table
             let imgBox = $('#comment-img');
             imgBox.addEventListener('click', (e) => {
                 let relX = e.offsetX / imgBox.clientWidth;
