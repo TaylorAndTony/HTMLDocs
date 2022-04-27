@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, Response, request
 import os
 
 VIDEO_FILE = 'video2.mp4'
@@ -12,8 +12,19 @@ def index():
 
 @app.route('/<string:anything>')
 def get_file(anything):
+
     if 'video' in anything:
-        return open(VIDEO_FILE, 'rb').read()
+        filename = VIDEO_FILE
+        fileSize = os.path.getsize(filename)
+        f = open(filename, 'rb')
+        f.seek(request.range.ranges[0][0])
+        headers = {
+            'Accept-Range': 'bytes',
+            'Content-Length': fileSize,
+            'Content-Range': request.range.to_content_range_header(fileSize)
+        }
+        return Response(f, 206, headers, content_type='video/mp4')
+
     else:
         if os.path.exists(anything):
             return open(anything, 'r', encoding='utf-8').read()
