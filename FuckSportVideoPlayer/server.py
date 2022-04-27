@@ -1,7 +1,6 @@
 from flask import Flask, Response, request
 import os
 
-VIDEO_FILE = 'video2.mp4'
 app = Flask(__name__)
 
 
@@ -14,7 +13,9 @@ def index():
 def get_file(anything):
 
     if 'video' in anything:
-        filename = VIDEO_FILE
+        filename = anything
+        if not os.path.exists(filename):
+            return Response(status=404)
         fileSize = os.path.getsize(filename)
         f = open(filename, 'rb')
         f.seek(request.range.ranges[0][0])
