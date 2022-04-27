@@ -5,6 +5,15 @@ document.addEventListener('DOMContentLoaded', () => {
     vid.volume = 0;
     vid.loop = true;
     vid.play();
+    vid.addEventListener('click', () => {
+        if (clicked) {
+            vid.pause();
+            clicked = false;
+        } else {
+            vid.play();
+            clicked = true;
+        }
+    })
 
     document.getElementById('slider').oninput = function() {
         document.getElementById('video').playbackRate = this.value;
