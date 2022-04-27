@@ -10,13 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('video').playbackRate = this.value;
         document.getElementById('spd-value').innerText = this.value;
     }
+    document.getElementById('height').oninput = function() {
+        document.getElementById('height-value').innerText = this.value;
+        document.getElementById('video').style.height = `${this.value}px`;
+    }
 
-    vid.addEventListener('click', function(e) {
-        if (clicked) {
-            vid.style.width = '90%';
-        } else {
-            vid.style.width = '50%';
-        }
-        clicked = !clicked;
-    })
 })
