@@ -3,3 +3,6 @@ CPUMonitor
 echartsTest
 *.gif
 *.mp4
+FuckSportVideoPlayer/*.png
+__pycache__
+YTUCourseList/*.json
