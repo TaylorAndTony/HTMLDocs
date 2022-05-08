@@ -1,0 +1,134 @@
+:root {
+    --bg-top: #f4f7fd;
+    --bg-bottom: #d2ddf9;
+    --btn-color: #789;
+    --btn-color-blue: #4d3dff;
+    --btn-color-red: #ff6169;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--bg-top), var(--bg-bottom));
+}
+
+#main {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 900px;
+}
+
+/* Air-conditioner */
+#ac-body {
+    position: relative;
+    width: 400px;
+    height: 150px;
+    border: 5px solid #666;
+    border-radius: 20px;
+    background: linear-gradient(to bottom, #cfcfcf, #d3d3d3, #aaaaaa);
+}
+
+/* bottom line in the ac */
+#ac-line {
+    position: absolute;
+    width: 300px;
+    height: 10px;
+    background-color: #666;
+    left: 50%;
+    bottom: 10px;
+    transform: translateX(-50%);
+}
+
+/* temperature */
+#ac-temp {
+    position: absolute;
+    font-size: 50px;
+    right: 10px;
+    top: 10px;
+    color: white;
+    filter: drop-shadow(0 0 5px white);
+}
+
+#ac-temp-digit {
+    font-family: Lucida Console, monospace;
+}
+
+#ac-temp-unit {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+/* animation area */
+#drop {
+    width: 400px;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+}
+
+.drop-me {
+    position: absolute;
+    top: -20px;
+    animation: drop 5s;
+}
+
+@keyframes drop {
+    0% {
+        opacity: 0;
+        top: -20px;
+    }
+
+    30% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        top: 200px;
+    }
+}
+
+/* control area */
+#ctl {
+    margin-top: 30px;
+    position: relative;
+    width: 100%;
+    height: 400px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-template-rows: auto auto auto auto;
+    text-align: center;
+}
+
+.btn {
+    width: 50px;
+    height: 50px;
+    background-color: var(--btn-color);
+    box-shadow: 5px 5px 10px var(--btn-color);
+    position: relative;
+    justify-self: center;
+    line-height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: white;
+}
+
+.btn:hover {
+    transform: scale(1.2);
+}
+
+.btn:active {
+    transform: scale(0.7);
+}
+
+.red-btn {
+    background-color: var(--btn-color-red);
+    box-shadow: 5px 5px 10px var(--btn-color-red);
+}
+
+.blue-btn {
+    background-color: var(--btn-color-blue);
+    box-shadow: 5px 5px 10px var(--btn-color-blue);
+}
