@@ -39,8 +39,8 @@ body {
     font-weight: bold;
     text-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
     /* pos */
-    margin-top: 30px;
-    margin-bottom: 40px;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 /* textarea */
@@ -80,8 +80,8 @@ body {
     transform: translateX(-50%);
     /* size */
     padding: 10px;
-    margin-top: 1em;
-    margin-bottom: 1em;
+    margin-top: 10px;
+    margin-bottom: 10px;
     border-bottom: 2px solid transparent;
     width: 50%;
     transition: .5s;
@@ -147,4 +147,8 @@ body {
     display: block;
     width: 100%;
     height: 200px;
+}
+
+.morse-div {
+	display: inline-block;
 }

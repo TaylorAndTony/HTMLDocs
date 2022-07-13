@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@next"></script>
+    <title>Vue 3 test 1</title>
+</head>
+<body>
+    <div id="app">
+        <div id="counter" @click="handleClick">{{counter}}</div>
+        <span :title="tit">Hello world!</span>
+        <span v-html="vhtml"></span>
+    </div>
+
+    <style>
+        * {
+            font-size: 20px;
+        }
+    </style>
+
+    <script>
+        const Args = {
+            data() {
+                return {
+                    counter: 120,
+                    tit: 'You loaded this page on ' + new Date().toLocaleString(),
+                    vhtml: '<div style="color:red">from v-html</div>'
+                }
+            },
+            mounted() {
+                setInterval(() => {
+                    this.counter++;
+                    if (this.counter > 200) {
+                        this.counter = 0;
+                    }
+                }, 1000);
+            },
+            methods: {
+                handleClick() {
+                    this.counter += 100;
+                }
+            }
+        };
+
+        const app = Vue.createApp(Args);
+        const vm = app.mount('#app');
+    </script>
+</body>
+</html>

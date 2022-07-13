@@ -1,0 +1,69 @@
+$bg: #443454;
+$bg-box: rgba(0, 0, 0, 0.3);
+$ct: white;
+$c1: #f6875c;
+$c2: #5bd697;
+
+$font: 'misans', Aria, sans-serif;
+
+@mixin center-self {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+* {
+    font-family: $font;
+    font-size: 18px;
+    margin: 10px;
+}
+
+html {
+    background: $bg;
+    color: $ct;
+}
+
+
+input {
+    border: none;
+    border-bottom: 1px solid $c1;
+    background: $bg-box;
+    color: $ct;
+    font-family: $font;
+    padding: 0.5rem;
+    text-align: center;
+
+    &:focus {
+        outline: none;
+    }
+}
+
+.box {
+    @include center-self;
+    background-color: $bg-box;
+    text-align: center;
+    width: 80%;
+    max-width: 1000px;
+    margin-top: 30px;
+    border-radius: 20px;
+    box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.5);
+
+    .title {
+        padding-top: 20px;
+        font-size: 1.3em;
+        font-weight: bold;
+    }
+}
+
+#calc {
+    .content {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.digit {
+    font-size: 20px;
+    font-weight: bold;
+    color: $c2;
+}

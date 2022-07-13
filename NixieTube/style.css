@@ -1,0 +1,62 @@
+body {
+	background-color: #090909;
+}
+
+#tube-show {
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%,-50%);
+	text-align: center;
+	width: 100%;
+}
+
+.nixie-container {
+	display: inline-block;
+	width: 100px;
+	height: 200px;
+	margin: 0 20px;
+}
+
+.nixie-container .nixie-number {
+	display: block;
+	position: absolute;
+	width: 100px;
+}
+
+.nixie-number .nixie-number-part {
+	fill: none;
+	stroke: rgba(0, 0, 0, 0.4);
+	stroke-width: 10;
+	stroke-linecap: round;
+	stroke-miterlimit: 10;
+}
+
+.nixie-number.active .nixie-number-part {
+	stroke: #F58549;
+	filter: drop-shadow(0px 0px 5px #F58549),
+		drop-shadow(0px 0px 10px #F58549),
+		drop-shadow(0px 0px 15px #F58549),
+	;
+}
+
+
+.nixie-background {
+	position: absolute;
+	width: 100px;
+	height: 200px;
+}
+
+.nixie-background.active {
+	background-color: rgba(255, 189, 23, 0.1);
+	filter: blur(25px);
+	-webkit-filter: blur(25px);
+	-ms-filter: blur(25px);
+	-moz-filter: blur(25px);
+}
+
+
+.blank {
+	display: inline-block;
+	width: 40px;
+}

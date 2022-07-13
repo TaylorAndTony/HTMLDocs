@@ -1,0 +1,69 @@
+* {
+  font-family: "misans", Aria, sans-serif;
+  font-size: 18px;
+  margin: 10px;
+}
+
+html {
+  background: #443454;
+  color: white;
+}
+
+input {
+  border: none;
+  border-bottom: 1px solid #f6875c;
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  font-family: "misans", Aria, sans-serif;
+  padding: 0.5rem;
+  text-align: center;
+}
+
+input:focus {
+  outline: none;
+}
+
+.box {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.3);
+  text-align: center;
+  width: 80%;
+  max-width: 1000px;
+  margin-top: 30px;
+  border-radius: 20px;
+  box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.5);
+}
+
+.box .title {
+  padding-top: 20px;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+#calc .content {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+#middle-flow .content {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  text-align: left;
+  padding: 0 30px;
+}
+
+.digit {
+  font-size: 20px;
+  font-weight: bold;
+  color: #5bd697;
+}
+
+.digit2 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #f6875c;
+}
+
+/*# sourceMappingURL=style.css.map */

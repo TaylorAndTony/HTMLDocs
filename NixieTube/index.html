@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport"
+			content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" href="style.css">
+		<title>Nixie Tube</title>
+		<script src="vue3.js"></script>
+	</head>
+	<body>
+		<div id="app">
+			<div id="tube-show">
+				<tube v-for="hour in h" :dight="hour"></tube>
+				<div class="blank"></div>
+				<tube v-for="minute in m" :dight="minute"></tube>
+
+				<div v-if="showSec">
+					<div class="blank"></div>
+					<tube v-for="secs in s" :dight="secs"></tube>
+				</div>
+			</div>
+		</div>
+		<script src="main.js"></script>
+	</body>
+
+</html>

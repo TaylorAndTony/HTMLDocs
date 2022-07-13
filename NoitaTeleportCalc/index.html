@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery-3.6.0.js"></script>
+    <title>Noita Teleport Calc</title>
+</head>
+
+<body>
+    <div id="main">
+        <div id="cur-location" class="box">
+            <div class="title">Now Location</div>
+            <div class="content">
+                <span class="text">X</span>
+                <input type="text" name="cur-x" id="cur-x">
+                <span class="text">Y</span>
+                <input type="text" name="cur-y" id="cur-y">
+            </div>
+        </div>
+        <div id="tar-location" class="box">
+            <div class="title">Target Location</div>
+            <div class="content">
+                <span class="text">X</span>
+                <input type="text" name="tar-x" id="tar-x">
+                <span class="text">Y</span>
+                <input type="text" name="tar-y" id="tar-y">
+            </div>
+        </div>
+        <div id="middle-flow" class="box">
+            <div class="title">Calculation</div>
+            <div class="content">
+                <span>X</span>
+                <span id="middle-x" class="digit">...</span>
+                <span>Y</span>
+                <span id="middle-y" class="digit">...</span>
+            </div>
+        </div>
+        <div id="calc" class="box">
+            <div class="title">Result</div>
+            <div class="content">
+                <span class="text">X</span>
+                <span class="digit" id="calc-x">3 [---] 1 [--]</span>
+                <span class="text">Y</span>
+                <span class="digit" id="calc-y">2 [++] 1 [+]</span>
+            </div>
+        </div>
+    </div>
+    <script>
+        const nowX = $('#cur-x');
+        const nowY = $('#cur-y');
+        const tarX = $('#tar-x');
+        const tarY = $('#tar-y');
+        const calcX = $('#calc-x');
+        const calcY = $('#calc-y');
+        const middleX = $('#middle-x');
+        const middleY = $('#middle-y');
+
+        /**
+         * Generate an operation string for Noita mod "cheatGUI" teleport gui.
+         * 
+         * [+++] means + 10000
+         * [--] means - 1000
+         * click on the button can change the digit.
+         * 
+         * Since it is hard to determine how many clicks are needed,
+         * this function will tell you click counts.
+         */
+        function getGapCurrectionStr(nowInt, targetInt) {
+            let btn3 = 10000;
+            let btn2 = 1000;
+            let btn1 = 100;
+
+            let gap = targetInt - nowInt;
+            let ch = gap < 0 ? '-' : '+';
+            gap = Math.abs(gap);
+            let finalStr;
+            let calcStr;
+            console.log(`${nowInt} -> ${targetInt}, gap ${gap}`);
+
+            let _1w = `<span class="digit2">${btn3}</span>`;
+            let _1k = `<span class="digit2">${btn2}</span>`;
+            let _1b = `<span class="digit2">${btn1}</span>`;
+
+            if (gap >= btn3) {
+                let x3 = parseInt(gap / btn3);
+                let x2 = parseInt((gap % btn3) / btn2);
+                let x1 = parseInt((gap % btn2) / btn1);
+                finalStr = `${x3} [${ch}${ch}${ch}]<br >${x2} [${ch}${ch}]<br >${x1} [${ch}]`;
+                let calcRes = x3 * btn3 + x2 * btn2 + x1 * btn1;
+                calcStr = `${calcRes} = ${_1w} * ${x3} + ${_1k} * ${x2} + ${_1b} * ${x1}`;
+            } else if (gap >= btn2) {
+                let x2 = parseInt(gap / btn2);
+                let x1 = parseInt((gap % btn2) / btn1);
+                finalStr = `${x2} [${ch}${ch}]<br >${x1} [${ch}]`;
+                let calcRes = x2 * btn2 + x1 * btn1;
+                calcStr = `${calcRes} = ${_1k} * ${x2} + ${_1b} * ${x1}`
+            } else if (gap >= btn1) {
+                let x1 = parseInt(gap / btn1);
+                finalStr = `${x1} [${ch}]`;
+                let calcRes = x1 * btn1;
+                calcStr = `${calcRes} = ${_1b} * ${x1}`;
+            } else {
+                finalStr = `${ch} ${gap} (cannot fix)`;
+                calcStr = `${ch} ${gap}`;
+            }
+            return {
+                finalStr, calcStr
+            };
+        }
+
+        function calc() {
+            if (nowX.val() === '' || nowY.val() === '' || tarX.val() === '' || tarY.val() === '') {
+                return;
+            };
+            let nowXVal = parseInt(nowX.val());
+            let nowYVal = parseInt(nowY.val());
+            let tarXVal = parseInt(tarX.val());
+            let tarYVal = parseInt(tarY.val());
+            let X = getGapCurrectionStr(nowXVal, tarXVal);
+            let Y = getGapCurrectionStr(nowYVal, tarYVal);
+            calcX.html(X.finalStr);
+            calcY.html(Y.finalStr);
+            middleX.html(X.calcStr);
+            middleY.html(Y.calcStr);
+        }
+
+        $(document).ready(function () {
+            nowX.on('input', calc);
+            nowY.on('input', calc);
+            tarX.on('input', calc);
+            tarY.on('input', calc);
+        });
+    </script>
+</body>
+
+</html>
