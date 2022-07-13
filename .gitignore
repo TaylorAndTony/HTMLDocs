@@ -3,6 +3,7 @@ CPUMonitor
 echartsTest
 *.gif
 *.mp4
+*.psd
 *.css.map
 FuckSportVideoPlayer/*.png
 __pycache__
