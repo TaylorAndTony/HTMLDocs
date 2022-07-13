@@ -11,9 +11,12 @@
 </head>
 
 <body>
+    <div id="layer1"></div>
+    <div id="layer2"></div>
     <div id="main">
         <div id="cur-location" class="box">
             <div class="title">Now Location</div>
+            <div class="float">Where you're now</div>
             <div class="content">
                 <span class="text">X</span>
                 <input type="text" name="cur-x" id="cur-x">
@@ -23,6 +26,7 @@
         </div>
         <div id="tar-location" class="box">
             <div class="title">Target Location</div>
+            <div class="float">Where you want to go</div>
             <div class="content">
                 <span class="text">X</span>
                 <input type="text" name="tar-x" id="tar-x">
@@ -32,15 +36,17 @@
         </div>
         <div id="middle-flow" class="box">
             <div class="title">Calculation</div>
+            <div class="float">Detailed calc process</div>
             <div class="content">
-                <span>X</span>
+                <span class="text">X</span>
                 <span id="middle-x" class="digit">...</span>
-                <span>Y</span>
+                <span class="text">Y</span>
                 <span id="middle-y" class="digit">...</span>
             </div>
         </div>
         <div id="calc" class="box">
             <div class="title">Result</div>
+            <div class="float">How many times to click</div>
             <div class="content">
                 <span class="text">X</span>
                 <span class="digit" id="calc-x">3 [---] 1 [--]</span>

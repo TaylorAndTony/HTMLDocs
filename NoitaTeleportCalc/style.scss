@@ -1,4 +1,4 @@
-$bg: #443454;
+$bg: #443454cc;
 $bg-box: rgba(0, 0, 0, 0.3);
 $ct: white;
 $c1: #f6875c;
@@ -12,10 +12,19 @@ $font: 'misans', Aria, sans-serif;
     transform: translateX(-50%);
 }
 
+@mixin full {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
 * {
     font-family: $font;
     font-size: 18px;
-    margin: 10px;
+    margin: 0;
+    padding: 0;
 }
 
 html {
@@ -32,10 +41,28 @@ input {
     font-family: $font;
     padding: 0.5rem;
     text-align: center;
+    margin: 10px;
 
     &:focus {
         outline: none;
     }
+}
+
+
+#layer1 {
+    @include full;
+    z-index: -20;
+    background-image: url('bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#layer2 {
+    @include full;
+    z-index: -10;
+    backdrop-filter: blur(20px);
+    background-color: $bg;
 }
 
 .box {
@@ -45,13 +72,38 @@ input {
     width: 80%;
     max-width: 1000px;
     margin-top: 30px;
+    border: 1px solid transparent;
     border-radius: 20px;
     box-shadow: 5px 5px 12px rgba(0, 0, 0, 0.5);
+    transition: all .2s ease-in-out;
+
+    &:hover {
+        border: 1px solid $c2;
+        box-shadow: 5px 5px 12px $c2;
+    }
 
     .title {
         padding-top: 20px;
         font-size: 1.3em;
         font-weight: bold;
+    }
+
+    .float {
+        position: absolute;
+        z-index: 10;
+        top: 10px;
+        left: 10px;
+        opacity: 0;
+        text-shadow: 1px 1px 2px $c2;
+        transition: all .2s ease-in-out;
+    }
+
+    &:hover .float {
+        opacity: 1;
+    }
+
+    * {
+        margin: 10px;
     }
 }
 
@@ -59,6 +111,15 @@ input {
     .content {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
+        align-items: center;
+    }
+}
+
+#middle-flow {
+    .content {
+        display: grid;
+        grid-template-columns: 1fr 10fr;
+        padding-left: 30px;
     }
 }
 
