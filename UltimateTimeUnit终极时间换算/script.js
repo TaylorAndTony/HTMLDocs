@@ -1,0 +1,74 @@
+const nian = document.querySelector("#res-nian");
+const zhou = document.querySelector("#res-zhou");
+const tian = document.querySelector("#res-tian");
+const shi = document.querySelector("#res-shi");
+const fen = document.querySelector("#res-fen");
+const miao = document.querySelector("#res-miao");
+
+const nian2 = document.querySelector("#res-nian-2");
+const zhou2 = document.querySelector("#res-zhou-2");
+const tian2 = document.querySelector("#res-tian-2");
+const shi2 = document.querySelector("#res-shi-2");
+const fen2 = document.querySelector("#res-fen-2");
+const miao2 = document.querySelector("#res-miao-2");
+
+const expr = document.querySelector('#exp');
+
+function evalTimeExpr() {
+    let e = expr.value;
+    // all calc are done in seconds
+    let totalSec = 0;
+    let tempStr = e.slice(0);
+    tempStr = tempStr.replace(/cen/gm, '*' + 31536000 * 100);
+    tempStr = tempStr.replace(/yr/gm, '*' + 31536000);
+    tempStr = tempStr.replace(/w/gm, '*' + 604800);
+    tempStr = tempStr.replace(/d/gm, '*' + 86400);
+    tempStr = tempStr.replace(/h/gm, '*' + 3600);
+    tempStr = tempStr.replace(/m/gm, '*' + 60);
+    tempStr = tempStr.replace(/s/gm, '*' + 1);
+    console.log('parsing: ' + tempStr);
+    try {
+        totalSec = eval(tempStr);
+        console.log('total sec: ' + totalSec);
+    } catch (err) {
+        console.log('error: ' + err);
+        totalSec = 0;
+    }
+    return totalSec;
+}
+
+function updateResult(totalSec) {
+    if (!totalSec) {
+        return;
+    }
+    let v_nian = Math.floor(totalSec / 31536000);
+    let v_zhou = Math.floor((totalSec % 31536000) / 604800);
+    let v_tian = Math.floor((totalSec % 604800) / 86400);
+    let v_shi = Math.floor((totalSec % 86400) / 3600);
+    let v_fen = Math.floor((totalSec % 3600) / 60);
+    let v_miao = Math.floor((totalSec % 60));
+    nian.innerHTML = v_nian;
+    zhou.innerHTML = v_zhou;
+    tian.innerHTML = v_tian;
+    shi.innerHTML = v_shi;
+    fen.innerHTML = v_fen;
+    miao.innerHTML = v_miao;
+}
+
+function update() {
+    let secs = evalTimeExpr();
+    updateResult(secs);
+    let digits = 3;
+    nian2.innerHTML = (secs / 31536000).toFixed(digits);
+    zhou2.innerHTML = (secs / 604800).toFixed(digits);
+    tian2.innerHTML = (secs / 86400).toFixed(digits);
+    shi2.innerHTML = (secs / 3600).toFixed(digits);
+    fen2.innerHTML = (secs / 60).toFixed(digits);
+    miao2.innerHTML = secs.toFixed(digits);
+}
+
+window.onload = function () {
+    expr.addEventListener('keyup', function (e) {
+        update();
+    })
+}

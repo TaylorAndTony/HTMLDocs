@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Unit calc</title>
+</head>
+
+<body>
+    <div id="main">
+        <div id="expression" class="box">
+            <div class="title">时间表达式</div>
+            <div class="text">
+                <span class="code">cen</span>世纪，
+                <span class="code">yr</span>年，
+                <span class="code">w</span>周，
+            </div>
+            <div class="text">
+                <span class="code">d</span>天，
+                <span class="code">h</span>小时，
+                <span class="code">m</span>分钟，
+                <span class="code">s</span>秒，
+            </div>
+            <div>
+                <input type="text" id="exp" value="" placeholder="输入数学表达式">
+            </div>
+        </div>
+        <div id="reusult" class="box">
+            <div class="title">总计时长</div>
+            <div class="text">
+                <span class="code" id="res-nian">0</span>年
+                <span class="code" id="res-zhou">0</span>周
+                <span class="code" id="res-tian">0</span>天
+                <span class="code" id="res-shi">0</span>时
+                <span class="code" id="res-fen">0</span>分
+                <span class="code" id="res-miao">0</span>秒
+            </div>
+        </div>
+        <div id="reusult2" class="box">
+            <div class="title">单位换算</div>
+            <div class="text">
+                <p><span class="code" id="res-nian-2">0</span>年</p>
+                <p><span class="code" id="res-zhou-2">0</span>周</p>
+                <p><span class="code" id="res-tian-2">0</span>天</p>
+                <p><span class="code" id="res-shi-2">0</span>时</p>
+                <p><span class="code" id="res-fen-2">0</span>分</p>
+                <p><span class="code" id="res-miao-2">0</span>秒</p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

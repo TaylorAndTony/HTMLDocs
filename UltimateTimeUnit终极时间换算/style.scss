@@ -1,0 +1,84 @@
+$bg: #edf2f7;
+$fg: #333;
+$color1: #00C6B2;
+$color2: #E37856;
+
+@mixin center-this {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@mixin smooth-shadow {
+    box-shadow:
+        1.3px 1.2px 2.8px rgba(0, 0, 0, 0.022),
+        3.3px 3px 7px rgba(0, 0, 0, 0.031),
+        6.7px 6.2px 14.4px rgba(0, 0, 0, 0.039),
+        13.9px 12.8px 29.6px rgba(0, 0, 0, 0.048),
+        38px 35px 81px rgba(0, 0, 0, 0.07);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'misans', 'oppo sans', Arial, sans-serif;
+}
+
+html {
+    background: $bg;
+    color: $fg;
+    font-size: 18px;
+}
+
+.box {
+    @include smooth-shadow;
+    @include center-this;
+    background: white;
+    width: 80%;
+    max-width: 1200px;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.title {
+    color: $fg;
+
+    font: {
+        size: 20px;
+    }
+
+    text-shadow: 1px 1px 3px $color1;
+    margin-bottom: 20px;
+}
+
+input {
+    @include center-this;
+    background: white;
+    width: 80%;
+    max-width: 600px;
+    padding: 5px 10px;
+    border: 0;
+    border-bottom: 2px solid $color1;
+    font-size: 20px;
+
+    &:focus {
+        outline: none;
+        border-bottom: 2px solid $color2;
+    }
+}
+
+.code {
+    font: {
+        family: 'Jetbrans mono', 'Consolas', 'Lucida Console', monospace;
+        size: 22px;
+    }
+
+    margin-right: 10px;
+    text-shadow: 1px 1px 1px $color1;
+}
+
+.text {
+    text-align: center;
+    margin: 10px 0;
+}
