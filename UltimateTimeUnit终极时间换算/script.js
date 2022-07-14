@@ -24,18 +24,32 @@ const jidu = document.querySelector("#res-jidu");
 
 const expr = document.querySelector('#exp');
 
+// 
+// add or change the unit calculations here!
+// 
+// [regex for unit keyword, value for this unit in secs]
+// 
+const units = [
+    [/cen/gm, 31536000 * 100],
+    [/yr/gm, 31536000],
+    [/w/gm, 604800],
+    [/d/gm, 86400],
+    [/h/gm, 3600],
+    [/m/gm, 60],
+    [/s/gm, 1],
+    [/sc/gm, 3600 * 2],
+    [/g/gm, 3600 * 2.4],
+    [/ke/gm, 60 * 15],
+]
+
 function evalTimeExpr() {
     let e = expr.value;
     // all calc are done in seconds
     let totalSec = 0;
     let tempStr = e.slice(0);
-    tempStr = tempStr.replace(/cen/gm, '*' + 31536000 * 100);
-    tempStr = tempStr.replace(/yr/gm, '*' + 31536000);
-    tempStr = tempStr.replace(/w/gm, '*' + 604800);
-    tempStr = tempStr.replace(/d/gm, '*' + 86400);
-    tempStr = tempStr.replace(/h/gm, '*' + 3600);
-    tempStr = tempStr.replace(/m/gm, '*' + 60);
-    tempStr = tempStr.replace(/s/gm, '*' + 1);
+    for (let i of units) {
+        tempStr = tempStr.replace(i[0], '*' + i[1]);
+    }
     console.log('parsing: ' + tempStr);
     try {
         totalSec = eval(tempStr);
