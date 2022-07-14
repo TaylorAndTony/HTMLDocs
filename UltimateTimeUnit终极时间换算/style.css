@@ -41,6 +41,8 @@ input {
   border: 0;
   border-bottom: 2px solid #00C6B2;
   font-size: 20px;
+  text-align: center;
+  margin: 15px 0;
 }
 input:focus {
   outline: none;
@@ -49,7 +51,7 @@ input:focus {
 
 .code {
   font-family: "Jetbrans mono", "Consolas", "Lucida Console", monospace;
-  font-size: 22px;
+  font-size: 24px;
   margin-right: 10px;
   text-shadow: 1px 1px 1px #00C6B2;
 }
@@ -57,4 +59,28 @@ input:focus {
 .text {
   text-align: center;
   margin: 10px 0;
+}
+
+.digit-table-2 {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 2em;
+  width: 70%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+  padding: 10px 30px;
+}
+
+.digit-table-3 {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  line-height: 2em;
+  width: 80%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  place-items: center;
+  padding: 10px 30px;
 }/*# sourceMappingURL=style.css.map */

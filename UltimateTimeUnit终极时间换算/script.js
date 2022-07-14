@@ -12,6 +12,16 @@ const shi2 = document.querySelector("#res-shi-2");
 const fen2 = document.querySelector("#res-fen-2");
 const miao2 = document.querySelector("#res-miao-2");
 
+const shichen = document.querySelector("#res-shichen");
+const geng = document.querySelector("#res-geng");
+const ke = document.querySelector("#res-ke");
+const tea = document.querySelector("#res-tea");
+const xiang = document.querySelector("#res-xiang");
+const zhi = document.querySelector("#res-zhi");
+const cha = document.querySelector("#res-cha");
+const yue = document.querySelector("#res-yue");
+const jidu = document.querySelector("#res-jidu");
+
 const expr = document.querySelector('#exp');
 
 function evalTimeExpr() {
@@ -65,6 +75,16 @@ function update() {
     shi2.innerHTML = (secs / 3600).toFixed(digits);
     fen2.innerHTML = (secs / 60).toFixed(digits);
     miao2.innerHTML = secs.toFixed(digits);
+
+    shichen.innerHTML = (secs / 60 / 60 / 2).toFixed(digits);
+    geng.innerHTML = (secs / 60 / 60 / 2.4).toFixed(digits);
+    ke.innerHTML = (secs / 60 / 15).toFixed(digits);
+    tea.innerHTML = (secs / 60 / 10).toFixed(digits);
+    xiang.innerHTML = (secs / 60 / 5).toFixed(digits);
+    zhi.innerHTML = (secs / 10).toFixed(digits);
+    cha.innerHTML = (secs).toFixed(digits);
+    yue.innerHTML = (secs / 60 / 60 / 24 / 30).toFixed(digits);
+    jidu.innerHTML = (secs / 60 / 60 / 24 / 30 / 3).toFixed(digits);
 }
 
 window.onload = function () {

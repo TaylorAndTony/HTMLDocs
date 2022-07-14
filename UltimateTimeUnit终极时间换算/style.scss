@@ -61,6 +61,8 @@ input {
     border: 0;
     border-bottom: 2px solid $color1;
     font-size: 20px;
+    text-align: center;
+    margin: 15px 0;
 
     &:focus {
         outline: none;
@@ -71,7 +73,7 @@ input {
 .code {
     font: {
         family: 'Jetbrans mono', 'Consolas', 'Lucida Console', monospace;
-        size: 22px;
+        size: 24px;
     }
 
     margin-right: 10px;
@@ -81,4 +83,21 @@ input {
 .text {
     text-align: center;
     margin: 10px 0;
+}
+
+@mixin table-display($rows, $width) {
+    @include center-this;
+    line-height: 2em;
+    width: $width;
+    display: grid;
+    grid-template-columns: repeat($rows, 1fr);
+    place-items: center;
+    padding: 10px 30px;
+}
+
+.digit-table-2 {
+    @include table-display(2, 70%);
+}
+.digit-table-3 {
+    @include table-display(3, 80%);
 }
