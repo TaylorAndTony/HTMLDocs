@@ -1,0 +1,100 @@
+$bg: #FFF8EE;
+$bg-box: #fff;
+$fg: black;
+$c1: #EEAC46;
+$c2: #FF8981;
+
+@mixin center-this {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+@mixin smooth-shadow {
+    box-shadow:
+        1.3px 1.2px 2.8px rgba(0, 0, 0, 0.022),
+        3.3px 3px 7px rgba(0, 0, 0, 0.031),
+        6.7px 6.2px 14.4px rgba(0, 0, 0, 0.039),
+        13.9px 12.8px 29.6px rgba(0, 0, 0, 0.048),
+        38px 35px 81px rgba(0, 0, 0, 0.07);
+}
+
+@mixin full {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+html {
+    background: $bg;
+    font-size: 18px;
+    font-family: 'misans', 'opposans R', Arial, sans-serif;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+    width: 15px;
+    height: 15px;
+}
+
+input[type="text"] {
+    padding: 3px 6px;
+    font-size: 18px;
+    margin-left: 20px;
+}
+
+#title {
+    font-size: 36px;
+    text-align: center;
+    text-shadow: 2px 2px 2px $c2;
+}
+
+#wrapper {
+    width: 80%;
+    max-width: 1000px;
+    @include center-this;
+}
+
+.box {
+    @include smooth-shadow;
+    padding: 20px;
+    margin-top: 20px;
+    background: $bg-box;
+
+    .title {
+        font-size: 24px;
+        text-shadow: 1px 1px 1px $c2;
+        margin: 20px 10px;
+    }
+
+    .switch {
+        display: inline-block;
+        padding: 4px 10px;
+        margin-left: 10px;
+    }
+
+    .value {
+        padding: 4px 10px;
+        display: grid;
+        grid-template-columns: 1fr 10fr 10fr;
+        text-align: center;
+    }
+}
+
+
+.active {
+    text-shadow: 1px 1px 1px $c1;
+}
+
+#final-cmd {
+    position: relative;
+    width: calc(100% - 50px);
+}

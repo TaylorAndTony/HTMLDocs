@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="web/vue3.js"></script>
+    <link rel="stylesheet" href="web/style.css">
+    <title>Nuitka Generator</title>
+</head>
+
+<body>
+    <div id="app">
+        <div id="wrapper">
+            <div id="title" class="box">nuitka generator</div>
+            <!-- switch -->
+            <!-- 
+                --mingw64 默认为已经安装的vs2017去编译，否则就按指定的比如mingw(官方建议)
+                --standalone 独立环境，这是必须的(否则拷给别人无法使用)
+                --windows-disable-console 没有CMD控制窗口
+                --show-progress 显示编译的进度，很直观
+                --show-memory 显示内存的占用
+                --onefile 像pyinstaller一样打包成单个exe文件(2021年我会再出教程来解释)
+                --follow-imports 全部编译
+                --nofollow-imports 不选，第三方包都不编译
+                --follow-stdlib 仅选择标准库
+             -->
+            <div id="options" class="box">
+                <div class="title">开关配置</div>
+                <div class="switch" v-for="s in switches" @click="handleAnyOption(s)">
+                    <input type="checkbox" v-model="s.enabled">
+                    <span :class="{active: s.enabled}">{{s.desc}}</span>
+                </div>
+            </div>
+
+            <div id="options" class="box">
+                <div class="title">参数配置</div>
+                <!-- 
+                    --output-dir=out 生成exe到out文件夹下面去
+                    --include-qt-plugins=sensible,styles 打包后PyQt的样式就不会变了
+                    --plugin-enable=qt-plugins 需要加载的PyQt插件
+                    --plugin-enable=tk-inter 打包tkinter模块的刚需
+                    --plugin-enable=numpy 打包numpy,pandas,matplotlib模块的刚需
+                    --plugin-enable=torch 打包pytorch的刚需
+                    --plugin-enable=tensorflow 打包tensorflow的刚需
+
+                    --windows-icon-from-ico=你的.ico 软件的图标
+                    --windows-company-name=Windows下软件公司信息
+                    --windows-product-name=Windows下软件名称
+                    --windows-file-version=Windows下软件的信息
+                    --windows-product-version=Windows下软件的产品信息
+                    --windows-file-description=Windows下软件的作用描述
+                    --windows-uac-admin=Windows下用户可以使用管理员权限来安装
+                    --linux-onefile-icon=Linux下的图标位置
+
+                    --include-package=复制比如numpy,PyQt5 这些带文件夹的叫包或者轮子
+                    --include-module=复制比如when.py 这些以.py结尾的叫模块
+                    --follow-import-to=MODULE/PACKAGE 仅选择指定模块/包编译
+                    --nofollow-import-to=MODULE/PACKAGE 选择指定模块/包不进行编译
+                 -->
+                <div class="value" v-for="v in values">
+                    <input type="checkbox" v-model="v.enabled">
+                    <span :class="{active: v.enabled}" @click="handleAnyOption(v)">{{v.desc}}</span>
+                    <input type="text" v-model="v.args" @input="genCmd">
+                </div>
+            </div>
+
+            <div id="output" class="box">
+                <div class="title">最终命令
+                    <button @click="copyCmd">复制</button>
+                </div>
+                <input type="text" v-model="cmd" id="final-cmd" ref="cmd">
+            </div>
+        </div>
+    </div>
+    <script src="web/main.js"></script>
+</body>
+
+</html>
