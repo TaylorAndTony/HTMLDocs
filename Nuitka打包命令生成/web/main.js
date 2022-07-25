@@ -102,13 +102,13 @@ const App = {
                     cmd: '--follow-import-to',
                     desc: '仅选择指定模块/包编译 ',
                     detail: '(不能 import 第三方库)',
-                    args: '',
+                    args: 'need',
                     enabled: false,
                 },
                 {
                     cmd: '--nofollow-import-to',
                     desc: '添加排除编译的目录 ',
-                    args: 'need',
+                    args: '',
                     enabled: false,
                 },
             ]
